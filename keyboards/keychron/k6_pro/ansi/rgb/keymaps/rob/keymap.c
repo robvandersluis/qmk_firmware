@@ -33,23 +33,23 @@ enum {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [MAC_BASE] = LAYOUT_ansi_68(
-     KC_GRV,                KC_F1, KC_F2,  KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8,  KC_F9,   KC_F10,   KC_F11,   KC_F12,   RGB_TOG, RGB_MOD,
-     MT(MOD_LALT, KC_TAB),  KC_Q,  KC_W,   KC_E,  KC_R,  KC_T,  KC_Y,  KC_U,  KC_I,   KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS, KC_HOME,
-     MT(MOD_LCTL, KC_ESC),  KC_A,  KC_S,   KC_D,  KC_F,  KC_G,  KC_H,  KC_J,  KC_K,   KC_L,    KC_SCLN,  KC_QUOT,  MT(MOD_RGUI, KC_ENT),  KC_PGUP,
-     MT(MOD_LSFT, KC_DEL),  KC_Z,  KC_X,   KC_C,  KC_V,  KC_B,  KC_N,  KC_M,  KC_COMM,KC_DOT,  KC_SLSH,  MT(MOD_RSFT, KC_BSPC),  KC_UP,    KC_PGDN,
-     KC_LCTL,  KC_LOPTN, KC_LCMMD,                               KC_SPC,   MO(FN2),MO(MAC_FN1),TG(FN2), KC_LEFT,  KC_DOWN, KC_RGHT),
+     KC_GRV,                KC_1,  KC_2,   KC_3,  KC_4,  KC_5,  KC_6,  KC_7,  KC_8,   KC_9,    KC_0,     KC_MINS,  KC_EQL,  KC_BSPC,               RGB_TOG,
+     KC_TAB,                KC_Q,  KC_W,   KC_E,  KC_R,  KC_T,  KC_Y,  KC_U,  KC_I,   KC_O,    KC_P,     KC_LBRC,  KC_RBRC, KC_BSLS,               KC_VOLU,
+     MT(MOD_LCTL, KC_ESC),  KC_A,  KC_S,   KC_D,  KC_F,  KC_G,  KC_H,  KC_J,  KC_K,   KC_L,    KC_SCLN,  KC_QUOT,       MT(MOD_RGUI, KC_ENT),      KC_VOLD,
+     MT(MOD_LSFT, KC_DEL),  KC_Z,  KC_X,   KC_C,  KC_V,  KC_B,  KC_N,  KC_M,  KC_COMM,KC_DOT,  MT(MOD_RSFT,KC_SLSH),MT(MOD_RSFT, KC_BSPC),  KC_UP, KC_MPLY,
+     KC_LCTL,  KC_LOPTN, KC_LCMMD, KC_SPC,                                            MO(FN2),MO(MAC_FN1),TG(FN2),          KC_LEFT,    KC_DOWN,   KC_RGHT),
 
 [WIN_BASE] = LAYOUT_ansi_68(
-     KC_GRV,                KC_F1,  KC_F2, KC_F3, KC_F4, KC_F5, KC_F6,  KC_F7, KC_F8,  KC_F9,  KC_F10,     KC_F11,  KC_F12,  RGB_TOG, RGB_MOD,
-     MT(MOD_LALT, KC_TAB),  KC_Q,   KC_W,  KC_E,  KC_R,  KC_T,  KC_Y,   KC_U,  KC_I,   KC_O,   KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS, KC_HOME,
-     MT(MOD_LCTL, KC_ESC),  KC_A,   KC_S,  KC_D,  KC_F,  KC_G,  KC_H,   KC_J,  KC_K,   KC_L,   KC_SCLN,  KC_QUOT,  MT(MOD_RALT, KC_ENT),  KC_PGUP,
-     MT(MOD_LSFT, KC_DEL),  KC_Z,   KC_X,  KC_C,  KC_V,  KC_B,  KC_N,   KC_M,  KC_COMM,KC_DOT, KC_SLSH,  MT(MOD_RSFT, KC_BSPC),  KC_UP,    KC_PGDN,
-     KC_LALT,  KC_LGUI,  KC_LCTL,                                KC_SPC,                       MO(FN2), MO(WIN_FN1),TG(FN2), KC_LEFT,  KC_DOWN, KC_RGHT),
+     KC_GRV,                KC_1,  KC_2,  KC_3,  KC_4,  KC_5,  KC_6,   KC_7,  KC_8,   KC_9,   KC_0,     KC_MINS,    KC_EQL,   KC_BSPC,             RGB_TOG,
+     MT(MOD_LALT, KC_TAB),  KC_Q,  KC_W,  KC_E,  KC_R,  KC_T,  KC_Y,   KC_U,  KC_I,   KC_O,   KC_P,     KC_LBRC,    KC_RBRC,  KC_BSLS,             KC_VOLU,
+     MT(MOD_LCTL, KC_ESC),  KC_A,  KC_S,  KC_D,  KC_F,  KC_G,  KC_H,   KC_J,  KC_K,   KC_L,   KC_SCLN,  KC_QUOT,    MT(MOD_RALT, KC_ENT),          KC_VOLD,
+     MT(MOD_LSFT, KC_DEL),  KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,  KC_N,   KC_M,  KC_COMM,KC_DOT, MT(MOD_RSFT,KC_SLSH), MT(MOD_RSFT, KC_BSPC), KC_UP,  KC_MPLY,
+     KC_LALT,  KC_LGUI,  KC_LCTL,  KC_SPC,                                              MO(FN2), MO(WIN_FN1),TG(FN2),       KC_LEFT,    KC_DOWN,   KC_RGHT),
 
 [MAC_FN1] = LAYOUT_ansi_68(
      KC_GRV,   KC_BRID,  KC_BRIU,  KC_MCTL,  KC_LPAD,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_TRNS,  RGB_TOG,
-    KC_TRNS,  BT_HST1,  BT_HST2,  BT_HST3,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
-     RGB_TOG,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,
+     KC_TRNS,  BT_HST1,  BT_HST2,  BT_HST3,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
+     KC_TRNS,  RGB_MOD,  RGB_VAI,  RGB_HUI,  RGB_SAI,  RGB_SPI,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,
      KC_TRNS,  RGB_RMOD, RGB_VAD,  RGB_HUD,  RGB_SAD,  RGB_SPD,  NK_TOGG,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
      KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,                      KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS),
 
@@ -62,16 +62,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [FN2] = LAYOUT_ansi_68(
 
-     KC_NO,    KC_KP_1,  KC_KP_2,  KC_KP_3,  KC_KP_4,  KC_KP_5,  KC_KP_6,  KC_KP_7,  KC_KP_8,  KC_KP_9,  KC_KP_0,   KC_MINUS,    KC_EQUAL,    RGB_TOG, RGB_MOD,
+     KC_NO,    KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10,   KC_F11,    KC_F12,    KC_F13,   KC_F14,
      KC_TRNS,  KC_EXCLAIM,  KC_AT,  KC_HASH,  KC_DOLLAR,  KC_PERCENT,  KC_CIRCUMFLEX,  KC_AMPERSAND,  KC_ASTERISK,  KC_LEFT_PAREN,  KC_RIGHT_PAREN,  KC_UNDERSCORE,  KC_PLUS,  KC_TRNS,  KC_TRNS,
-     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  TD(TD_PGUP_PGDN),  KC_HOME,  KC_LEFT,  KC_DOWN,  KC_UP,  KC_RGHT,  KC_END,   KC_TRNS,  KC_TRNS,  KC_TRNS,
+     KC_CAPS ,  KC_TRNS,  KC_TRNS,  KC_TRNS,  TD(TD_PGUP_PGDN),  KC_HOME,  KC_LEFT,  KC_DOWN,  KC_UP,  KC_RGHT,  KC_END,   KC_TRNS,  KC_TRNS,  KC_TRNS,
      KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  BAT_LVL,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  RGB_VAI,  KC_TRNS,
      KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,                      KC_TRNS,  KC_TRNS,  KC_TRNS,  RGB_HUD,  RGB_VAD  ,  RGB_HUI),
 
 [FN3] = LAYOUT_ansi_68(
-     KC_TILD,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_TRNS,  KC_TRNS,
+     KC_NO,    KC_KP_1,  KC_KP_2,  KC_KP_3,  KC_KP_4,  KC_KP_5,  KC_KP_6,  KC_KP_7,  KC_KP_8,  KC_KP_9,  KC_KP_0,  KC_MINUS, KC_EQUAL, RGB_TOG, RGB_MOD,
      KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
-     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,
+     KC_CAPS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,            KC_TRNS,  KC_TRNS,
      KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  BAT_LVL,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,
      KC_TRNS,  KC_TRNS,  KC_TRNS,                                KC_TRNS,                      KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS),
 };
@@ -93,30 +93,125 @@ void set_rgb(uint8_t h, uint8_t s, uint8_t v) {
     }
 }
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-    switch (get_highest_layer(state)) {
-        case FN2:
-            set_rgb(0, 255, 155); // rood
-            break;
-        case FN3:
-            set_rgb(0, 255, 255); // groen
-            break;
-        case MAC_FN1:
-        case WIN_FN1:
-            set_rgb(200, 255, 255); // paars
-            break;
-        case 0:
-        default:
-            set_rgb(0, 0, 255); // wit/blauwachtig
-            break;
+/*
+typedef enum {
+    STYLE_NONE,
+    STYLE_TEXT,
+    STYLE_MOD,
+    STYLE_MEDIA,
+    STYLE_MOUSE,
+    STYLE_SYSTEM,
+    STYLE_LAYER_SWITCH,
+    STYLE_SPECIAL,
+} visual_style_t;
+
+visual_style_t visual_style_for_keycode(uint16_t kc) {
+    if (IS_MODIFIER_KEYCODE(kc)) return STYLE_MOD;
+    if (IS_CONSUMER_KEYCODE(kc)) return STYLE_MEDIA;
+    if (IS_MOUSE_KEYCODE(kc)) return STYLE_MOUSE;
+    if (IS_SYSTEM_KEYCODE(kc)) return STYLE_SYSTEM;
+    if ( IS_BASIC_KEYCODE(kc)) return STYLE_TEXT;
+    if ( IS_QK_LAYER_TAP(kc) || IS_QK_MOD_TAP(kc) || IS_QK_MOMENTARY(kc) || IS_QK_LAYER_TAP_TOGGLE(kc)) {
+        return STYLE_LAYER_SWITCH;
     }
-    return state;
+    return STYLE_SPECIAL;
+}
+
+void rgb_for_style(visual_style_t style, uint8_t* r, uint8_t* g, uint8_t* b) {
+    switch (style) {
+        case STYLE_MOD:           *r = 0;   *g = 255; *b = 100; break;
+        case STYLE_MEDIA:         *r = 255; *g = 100; *b = 255; break;
+        case STYLE_MOUSE:         *r = 255; *g = 100; *b = 100; break;
+        case STYLE_SYSTEM:        *r = 100; *g = 100; *b = 255; break;
+        case STYLE_LAYER_SWITCH:  *r = 255; *g = 255; *b = 0;   break;
+        case STYLE_TEXT:          *r = 255; *g = 255; *b = 255; break;
+        case STYLE_SPECIAL:       *r = 0;   *g = 200; *b = 200; break;
+        default:                  *r = 0;   *g = 0;   *b = 0;   break;
+    }
+} */
+
+/*
+void highlight_layer_diff(uint8_t layer, uint8_t r, uint8_t g, uint8_t b) {
+    for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
+        for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
+            keypos_t pos = (keypos_t){ row, col };
+            uint16_t base_kc = keymap_key_to_keycode(0, pos);
+            uint16_t test_kc = keymap_key_to_keycode(layer, pos);
+
+            if (test_kc != KC_TRNS && test_kc != KC_NO && test_kc != base_kc) {
+                uint8_t led_index = g_led_config.matrix_co[row][col];
+                if (led_index != NO_LED) {
+                    rgb_matrix_set_color(led_index, r, g, b);
+                }
+            }
+        }
+    }
+}
+
+void highlight_modifiers(uint8_t layer, uint8_t r, uint8_t g, uint8_t b) {
+    for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
+        for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
+            keypos_t pos = (keypos_t){ row, col };
+            uint16_t kc = keymap_key_to_keycode(layer, pos);
+
+            if ( IS_MODIFIER_KEYCODE(kc)) {
+                uint8_t led_index = g_led_config.matrix_co[row][col];
+                if (led_index != NO_LED) {
+                    rgb_matrix_set_color(led_index, r, g, b);
+                }
+            }
+        }
+    }
+}
+void highlight_neuse(uint8_t layer, uint8_t r, uint8_t g, uint8_t b) {
+    for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
+        for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
+            keypos_t pos = (keypos_t){ row, col };
+            uint16_t kc = keymap_key_to_keycode(layer, pos);
+
+            if (kc == KC_NO) {
+                uint8_t led_index = g_led_config.matrix_co[row][col];
+                if (led_index != NO_LED) {
+                    rgb_matrix_set_color(led_index, r, g, b);
+                }
+            }
+        }
+    }
+}*/
+void highlight_layer(uint8_t layer, uint8_t r, uint8_t g, uint8_t b) {
+
+        for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
+                for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
+                    keypos_t pos = { .row = row, .col = col };
+                    uint16_t kc = keymap_key_to_keycode(layer, pos);
+                    if (kc != KC_TRNS && kc != KC_NO) {
+                        uint8_t index = row * MATRIX_COLS + col;
+                        rgb_matrix_set_color(index, r, g, b);
+                    }
+                }
+            }
+}
+
+void matrix_scan_user(void) {
+
+    if (layer_state_is(FN2)) {
+        set_rgb(0, 0, 0);
+        highlight_layer(FN2, 240, 80, 0);
+    } else if (layer_state_is(FN3)) {
+        set_rgb(0, 255, 255); // groen
+       // highlight_layer(FN3, 0, 255, 0); // groen
+    } else if (layer_state_is(MAC_FN1) || layer_state_is(WIN_FN1)) {
+        set_rgb(0, 0, 0);
+        highlight_layer(WIN_FN1,200,255,255);
+
+    } else {
+        set_rgb(0, 0, 255); // wit/blauwachtig
+    }
 }
 
 void keyboard_post_init_user(void) {
     rgb_matrix_enable();
-    rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR); // vaste kleur
-    rgb_matrix_sethsv(0, 0, 100); // wit, hue 0, sat 0, value 100
+    rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
+    rgb_matrix_sethsv(0, 0, 100);
 }
-
 
