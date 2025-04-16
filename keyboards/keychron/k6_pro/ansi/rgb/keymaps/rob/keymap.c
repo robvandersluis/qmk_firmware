@@ -180,6 +180,15 @@ void highlight_layer(uint8_t layer, uint8_t dr, uint8_t dg, uint8_t db) {
     }
 }
 
+bool led_matrix_indicators_user(void) {
+    if (host_keyboard_led_state().caps_lock) {
+        set_rgb(0, 255, 0);
+    } else {
+        set_rgb(0, 0, 0);
+    }
+    return false;
+}
+
 void matrix_scan_user(void) {
 
     if (layer_state_is(FN2)) {
