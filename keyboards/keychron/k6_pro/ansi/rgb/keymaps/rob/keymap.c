@@ -157,7 +157,7 @@ void rgb_for_style(visual_style_t style, uint8_t* r, uint8_t* g, uint8_t* b, uin
 
 
 void highlight_layer(uint8_t layer, uint8_t dr, uint8_t dg, uint8_t db) {
-
+            set_rgb(0, 0, 0);
     for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
         for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
             keypos_t pos = { .row = row, .col = col };
@@ -188,16 +188,19 @@ bool led_matrix_indicators_user(void) {
 }
 
 void matrix_scan_user(void) {
-
     if (layer_state_is(FN2)) {
-        highlight_layer(FN2, 240, 80, 0);
-    } else if (layer_state_is(FN3)) {
-        highlight_layer(FN3, 0, 255, 0);
-    } else if (layer_state_is(MAC_FN1) || layer_state_is(WIN_FN1)) {
-        highlight_layer(WIN_FN1,200,255,255);
-    } else {
-        highlight_layer(MAC_BASE, 0, 0, 255);
-    }
+    highlight_layer(FN2, 240, 80, 0);
+} else if (layer_state_is(FN3)) {
+    highlight_layer(FN3, 0, 255, 0);
+} else if (layer_state_is(MAC_FN1)) {
+    highlight_layer(MAC_FN1, 255, 0, 100);
+} else if (layer_state_is(WIN_FN1)) {
+    highlight_layer(WIN_FN1, 0, 255, 100);
+} else if (layer_state_is(WIN_BASE)) {
+    highlight_layer(WIN_BASE, 0, 0, 200);
+} else if (layer_state_is(MAC_BASE)) {
+    highlight_layer(MAC_BASE, 200, 200, 0);
+}
 }
 
 void keyboard_post_init_user(void) {
