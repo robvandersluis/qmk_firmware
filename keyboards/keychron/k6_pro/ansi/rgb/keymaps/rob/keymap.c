@@ -15,7 +15,6 @@
 */
 
 #include QMK_KEYBOARD_H
-
 // clang-format off
 enum layers{
   MAC_BASE,
@@ -27,7 +26,7 @@ enum layers{
 };
 
 enum {
-  TD_PGUP_PGDN = 0,
+  TD_PGDN_PGUP = 0,
   TD_CTRLZ,
   TD_ESC_CAPS,
 };
@@ -37,9 +36,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [MAC_BASE] = LAYOUT_ansi_68(
      KC_GRV,                KC_1,  KC_2,   KC_3,  KC_4,  KC_5,  KC_6,  KC_7,  KC_8,   KC_9,    KC_0,     KC_MINS,  KC_EQL, LALT(KC_BSPC) ,         RGB_TOG,
      MT(MOD_LALT, KC_TAB),  KC_Q,  KC_W,   KC_E,  KC_R,  KC_T,  KC_Y,  KC_U,  KC_I,   KC_O,    KC_P,     KC_LBRC,  KC_RBRC, KC_BSLS,               KC_VOLU,
-     TD(TD_ESC_CAPS),       KC_A,  KC_S,   KC_D,  KC_F,  KC_G,  KC_H,  KC_J,  KC_K,   KC_L,    KC_SCLN,  KC_QUOT,       MT(MOD_RGUI, KC_ENT),      KC_VOLD,
+     TD(TD_ESC_CAPS),       KC_A,  KC_S,   KC_D,  KC_F,  KC_G,  KC_H,  KC_J,  KC_K,   KC_L,    KC_SCLN,  KC_QUOT,  MT(MOD_RGUI, KC_ENT),      KC_VOLD,
      MT(MOD_LSFT, KC_DEL),  KC_Z,  KC_X,   KC_C,  KC_V,  KC_B,  KC_N,  KC_M,  KC_COMM,KC_DOT,  MT(MOD_RSFT,KC_SLSH),MT(MOD_RSFT, KC_BSPC),  KC_UP, KC_MPLY,
-     KC_LCTL,  KC_LOPTN, KC_LCMMD, KC_SPC,                                            MO(FN2),MO(MAC_FN1),TG(FN2),          KC_LEFT,    KC_DOWN,   KC_RGHT),
+     KC_LCTL,  KC_LOPTN, KC_LCMMD, KC_SPC,                                            MO(FN2),MO(MAC_FN1),TG(FN3),          KC_LEFT,    KC_DOWN,   KC_RGHT),
 
 [WIN_BASE] = LAYOUT_ansi_68(
      KC_GRV,                KC_1,  KC_2,  KC_3,  KC_4,  KC_5,  KC_6,   KC_7,  KC_8,   KC_9,   KC_0,     KC_MINS,    KC_EQL,      LCTL(KC_BSPC),    RGB_TOG,
@@ -66,8 +65,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
      KC_NO,    KC_F1,       KC_F2,    KC_F3,    KC_F4,             KC_F5,       KC_F6,          KC_F7,         KC_F8,       KC_F9,          KC_F10,         KC_F11,        KC_F12,  KC_F13,   KC_F14,
      KC_TRNS,  KC_EXCLAIM,  KC_AT,    KC_HASH,  KC_DOLLAR,         KC_PERCENT,  KC_CIRCUMFLEX,  KC_AMPERSAND,  KC_ASTERISK, KC_LEFT_PAREN,  KC_RIGHT_PAREN, KC_UNDERSCORE, KC_PLUS,  KC_TRNS,  KC_TRNS,
-     KC_TRNS,  KC_TRNS,     KC_TRNS,  KC_TRNS,  TD(TD_PGUP_PGDN),  KC_HOME,     KC_LEFT,        KC_DOWN,       KC_UP,       KC_RGHT,        KC_END,         KC_TRNS,            KC_TRNS,      KC_TRNS,
-     KC_TRNS,  KC_TRNS,     KC_TRNS,  KC_TRNS,  KC_TRNS,  BAT_LVL, KC_TRNS,     KC_TRNS,        KC_TRNS,       KC_TRNS,     KC_TRNS,                                    KC_TRNS,    RGB_VAI,  KC_TRNS,
+     KC_TRNS,  KC_TRNS,     KC_TRNS,  KC_TRNS,  TD(TD_PGDN_PGUP),  KC_HOME,     KC_LEFT,        KC_DOWN,       KC_UP,       KC_RGHT,        KC_END,         KC_TRNS,            KC_TRNS,      KC_TRNS,
+     KC_TRNS,  KC_TRNS,     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,     KC_TRNS,        KC_TRNS,       KC_TRNS,     KC_TRNS,                                    KC_TRNS,    RGB_VAI,  KC_TRNS,
      KC_TRNS,  KC_TRNS,     KC_TRNS,                               KC_TRNS,                                                       KC_TRNS,       KC_TRNS,     KC_TRNS,      RGB_HUD,RGB_VAD,  RGB_HUI),
 
 [FN3] = LAYOUT_ansi_68(
@@ -99,25 +98,16 @@ void td_ctrlz_reset(tap_dance_state_t *state, void *user_data) {
   }
 }
 
+bool led_matrix_indicators_user(void) {
+    // Do nothing, handled in matrix_scan_user
+    return false;
+}
+
 tap_dance_action_t tap_dance_actions[] = {
     [TD_CTRLZ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_ctrlz_finished, td_ctrlz_reset),
-    [TD_PGUP_PGDN] = ACTION_TAP_DANCE_DOUBLE(KC_PGDN, KC_PGUP),
+    [TD_PGDN_PGUP] = ACTION_TAP_DANCE_DOUBLE(KC_PGDN, KC_PGUP),
     [TD_ESC_CAPS] = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
 };
-
-
-static uint8_t last_hue = 0;
-static uint8_t last_sat = 0;
-static uint8_t last_val = 0;
-
-void set_rgb(uint8_t h, uint8_t s, uint8_t v) {
-    if (h != last_hue || s != last_sat || v != last_val) {
-        rgb_matrix_sethsv_noeeprom(h, s, v);
-        last_hue = h;
-        last_sat = s;
-        last_val = v;
-    }
-}
 
 typedef enum {
     STYLE_NONE,
@@ -131,6 +121,7 @@ typedef enum {
 } visual_style_t;
 
 visual_style_t visual_style_for_keycode(uint16_t kc) {
+
     if (IS_MODIFIER_KEYCODE(kc)) return STYLE_MOD;
     if (IS_CONSUMER_KEYCODE(kc)) return STYLE_MEDIA;
     if (IS_MOUSE_KEYCODE(kc)) return STYLE_MOUSE;
@@ -142,7 +133,7 @@ visual_style_t visual_style_for_keycode(uint16_t kc) {
     return STYLE_SPECIAL;
 }
 
-void rgb_for_style(visual_style_t style, uint8_t* r, uint8_t* g, uint8_t* b, uint8_t dr, uint8_t dg, uint8_t db) {
+void rgb_for_style(visual_style_t style, uint8_t* r, uint8_t* g, uint8_t* b) {
     switch (style) {
         case STYLE_MOD:           *r = 0;   *g = 255; *b = 100; break;
         case STYLE_MEDIA:         *r = 255; *g = 100; *b = 255; break;
@@ -151,61 +142,69 @@ void rgb_for_style(visual_style_t style, uint8_t* r, uint8_t* g, uint8_t* b, uin
         case STYLE_LAYER_SWITCH:  *r = 255; *g = 255; *b = 0;   break;
         case STYLE_TEXT:          *r = 255; *g = 255; *b = 255; break;
         case STYLE_SPECIAL:       *r = 0;   *g = 200; *b = 200; break;
-        default:                  *r = dr;   *g = dg;   *b = db;   break;
+        default:                  *r = 0;   *g = 0;   *b = 0;   break;
     }
 }
 
+static uint8_t last_layer = -1;
+static uint32_t layer_switch_time = 0;
+static bool layer_preview_active = false;
 
-void highlight_layer(uint8_t layer, uint8_t dr, uint8_t dg, uint8_t db) {
-            set_rgb(0, 0, 0);
+void highlight_layer(uint8_t layer ) {
+    uint8_t dr, dg, db;
+    const uint8_t WHITE[3] = { 64, 64, 64 };
+    const uint8_t RED[3] = {180, 64, 64};
+
+    bool is_preview = layer_preview_active && (timer_elapsed(layer_switch_time) > 400);
+    if (is_preview) {
+        layer_preview_active = false;
+    }
+
     for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
+        if (row < 2) {
+            // row 0,1    → black keycaps
+            dr = WHITE[0];
+            dg = WHITE[1];
+            db = WHITE[2];
+        } else {  //      → red keycaps
+            dr = RED[0];
+            dg = RED[1];
+            db = RED[2];
+        }
+
         for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
+            uint8_t led_index = g_led_config.matrix_co[row][col];
+            if (led_index == NO_LED) continue;
+
             keypos_t pos = { .row = row, .col = col };
             uint16_t kc = keymap_key_to_keycode(layer, pos);
-            if (kc != KC_TRNS && kc != KC_NO) {
-                uint8_t led_index = row * MATRIX_COLS + col;
-
+            if  (kc != KC_TRNS && kc != KC_NO)  {
                 uint8_t r, g, b;
                 visual_style_t style = visual_style_for_keycode(kc);
-                rgb_for_style(style, &r, &g, &b, dr, dg, db);
+                rgb_for_style(style, &r, &g, &b);
                 r = (r * dr) / 255;
                 g = (g * dg) / 255;
                 b = (b * db) / 255;
-
                 rgb_matrix_set_color(led_index, r, g, b);
+            } else if (! layer_preview_active) {
+                // Dim the LEDs for keys that are not in the current layer
+                rgb_matrix_set_color(led_index, 0, 0, 0);
             }
         }
     }
 }
 
-bool led_matrix_indicators_user(void) {
-    if (host_keyboard_led_state().caps_lock) {
-        set_rgb(0, 255, 0);
-    } else {
-        set_rgb(0, 0, 0);
-    }
-    return false;
-}
-
 void matrix_scan_user(void) {
-    if (layer_state_is(FN2)) {
-    highlight_layer(FN2, 240, 80, 0);
-} else if (layer_state_is(FN3)) {
-    highlight_layer(FN3, 0, 255, 0);
-} else if (layer_state_is(MAC_FN1)) {
-    highlight_layer(MAC_FN1, 255, 0, 100);
-} else if (layer_state_is(WIN_FN1)) {
-    highlight_layer(WIN_FN1, 0, 255, 100);
-} else if (layer_state_is(WIN_BASE)) {
-    highlight_layer(WIN_BASE, 0, 0, 200);
-} else if (layer_state_is(MAC_BASE)) {
-    highlight_layer(MAC_BASE, 200, 200, 0);
-}
+    uint8_t active_layer = get_highest_layer(layer_state);
+    if (active_layer != last_layer) {
+        last_layer = active_layer;
+        layer_switch_time = timer_read32();
+        layer_preview_active = true;
+    }
+    highlight_layer(active_layer);
 }
 
 void keyboard_post_init_user(void) {
-    rgb_matrix_enable();
-    rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
-    rgb_matrix_sethsv(0, 0, 100);
+    rgb_matrix_enable_noeeprom();
+    //rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
 }
-
