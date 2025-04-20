@@ -11,4 +11,7 @@ TAP_DANCE_ENABLE = yes
 # RGB Matrix ondersteuning (per-key verlichting en effecten)
 RGB_MATRIX_ENABLE = yes
 
+# Include custom tapdance implementation
+SRC += tapdance.c
+
 
